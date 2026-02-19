@@ -332,7 +332,7 @@ generation.
 | [KIP-279](https://cwiki.apache.org/confluence/display/KAFKA/KIP-279%3A+Fix+log+divergence+between+leader+and+follower+after+fast+leader+fail+over) — OffsetForLeaderEpoch bump | 2.0 | Supported |
 | [KIP-289](https://cwiki.apache.org/confluence/display/KAFKA/KIP-289%3A+Improve+the+default+group+id+behavior+in+KafkaConsumer) — Default group.id to null | 2.2 | Supported |
 | [KIP-294](https://cwiki.apache.org/confluence/display/KAFKA/KIP-294+-+Enable+TLS+hostname+verification+by+default) — TLS verification | 2.0 | Supported (via dialer) |
-| [KIP-302](https://cwiki.apache.org/confluence/display/KAFKA/KIP-302+-+Enable+Kafka+clients+to+use+all+DNS+resolved+IP+addresses) — Use multiple addrs for resolved hostnames | 2.1 | Supported (via dialer) |
+| [KIP-302](https://cwiki.apache.org/confluence/display/KAFKA/KIP-302+-+Enable+Kafka+clients+to+use+all+DNS+resolved+IP+addresses) — Use multiple addrs for resolved hostnames | 2.1 | Supported |
 | [KIP-320](https://cwiki.apache.org/confluence/display/KAFKA/KIP-320%3A+Allow+fetchers+to+detect+and+handle+log+truncation) — Fetcher: detect log truncation | 2.1 | Supported |
 | [KIP-322](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=87295558) — DeleteTopics disabled error code | 2.1 | Supported |
 | [KIP-339](https://cwiki.apache.org/confluence/display/KAFKA/KIP-339%3A+Create+a+new+IncrementalAlterConfigs+API) — IncrementalAlterConfigs | 2.3 | Supported |
@@ -384,7 +384,7 @@ generation.
 | [KIP-590](https://cwiki.apache.org/confluence/display/KAFKA/KIP-590%3A+Redirect+Zookeeper+Mutation+Protocols+to+The+Controller) — Envelope (broker only) | 2.7 | Supported |
 | [KIP-595](https://cwiki.apache.org/confluence/display/KAFKA/KIP-595%3A+A+Raft+Protocol+for+the+Metadata+Quorum) — New APIs for raft protocol | 2.7 | Supported |
 | [KIP-599](https://cwiki.apache.org/confluence/display/KAFKA/KIP-599%3A+Throttle+Create+Topic%2C+Create+Partition+and+Delete+Topic+Operations) — Throttling on create/delete topic/partition | 2.7 | Supported |
-| [KIP-602](https://cwiki.apache.org/confluence/display/KAFKA/KIP-602%3A+Change+default+value+for+client.dns.lookup) — Use all resolved addrs by default | 2.6 | Supported (via dialer) |
+| [KIP-602](https://cwiki.apache.org/confluence/display/KAFKA/KIP-602%3A+Change+default+value+for+client.dns.lookup) — Use all resolved addrs by default | 2.6 | Supported |
 | [KIP-651](https://cwiki.apache.org/confluence/display/KAFKA/KIP-651+-+Support+PEM+format+for+SSL+certificates+and+private+key) — Support PEM | 2.7 | Supported (via dialer) |
 | [KIP-654](https://cwiki.apache.org/confluence/display/KAFKA/KIP-654%3A+Aborted+transaction+with+non-flushed+data+should+throw+a+non-fatal+exception) — Aborted txns with unflushed data is not fatal | 2.7 | Supported (default behavior) |
 | [KIP-664](https://cwiki.apache.org/confluence/display/KAFKA/KIP-664%3A+Provide+tooling+to+detect+and+abort+hanging+transactions) — Describe producers / etc. | 2.8 (mostly) | Supported |

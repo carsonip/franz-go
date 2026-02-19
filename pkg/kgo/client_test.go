@@ -2,9 +2,12 @@ package kgo
 
 import (
 	"context"
+	"errors"
+	"net"
 	"reflect"
 	"strconv"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -108,6 +111,53 @@ func TestParseBrokerAddrErrors(t *testing.T) {
 				t.Fatal("expected error")
 			}
 		})
+	}
+}
+
+func TestDialerOverridePreserved(t *testing.T) {
+	const brokerAddr = "broker.example:9092"
+
+	var (
+		mu     sync.Mutex
+		calls  int
+		addrs  []string
+		signal = errors.New("dialer override called")
+	)
+	cl, err := NewClient(
+		SeedBrokers(brokerAddr),
+		Dialer(func(_ context.Context, _ string, host string) (net.Conn, error) {
+			mu.Lock()
+			defer mu.Unlock()
+			calls++
+			addrs = append(addrs, host)
+			return nil, signal
+		}),
+	)
+	if err != nil {
+		t.Fatalf("unexpected NewClient error: %v", err)
+	}
+	defer cl.Close()
+
+	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
+	defer cancel()
+
+	err = cl.Ping(ctx)
+	if err == nil {
+		t.Fatal("expected ping to fail with custom dialer error")
+	}
+	if !strings.Contains(err.Error(), signal.Error()) {
+		t.Fatalf("expected ping error to include custom dialer error %q, got %v", signal.Error(), err)
+	}
+
+	mu.Lock()
+	defer mu.Unlock()
+	if calls == 0 {
+		t.Fatal("custom dialer was never called")
+	}
+	for _, addr := range addrs {
+		if addr != brokerAddr {
+			t.Fatalf("custom dialer saw unexpected address %q", addr)
+		}
 	}
 }
 
